@@ -31,9 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Reference Include="nunit.framework" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\UDLR-Plugin\UDLR-Plugin.csproj">
+      <Project>{14A1CCDD-E68D-461B-96C7-28B887F95A45}</Project>
+      <Name>UDLR-Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LoginRequestTest.cs" />
+  </ItemGroup>
 </Project>
