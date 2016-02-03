@@ -1,0 +1,32 @@
+/**
+ * Unity Plugin for the UDLR service.
+ */
+
+plugins {
+  id "com.ullink.msbuild" version "2.12"
+  id "com.ullink.nuget" version "2.13"
+  id "com.ullink.nunit" version "1.5"
+}
+
+version = "0.1.0"
+archivesBaseName = "UDLR-Plugin"
+
+assemblyInfoPatcher {
+  version = "${project.version}.0"
+}
+
+msbuild {
+  solutionFile  = "UDLR-Plugin.sln"
+  projectName   = "${project.archivesBaseName}"
+  inputs.file(project.buildFile)
+  destinationDir  = "${buildDir}/msbuild/bin"
+  intermediateDir = "${buildDir}/msbuild/obj"
+}
+msbuild.dependsOn nugetRestore
+
+nunit {
+  testAssemblies = [msbuild.projects["UDLR-Plugin.Tests"].properties.TargetPath]
+}
+nunit.dependsOn msbuild
+
+build.dependsOn nunit
