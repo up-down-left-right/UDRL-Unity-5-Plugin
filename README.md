@@ -19,3 +19,6 @@ User
 # Auth
 FB id and token
 Could use game center id later
+
+# On App Close or Backgrounded
+Ping server at POST api.updownleftright.com/game_session?status=pause|resume
